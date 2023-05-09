@@ -64,21 +64,27 @@ Each UR robot is calibrated inside the factory giving exact forward and inverse 
 
 Once you have the drivers setup, use this script to collect the calibration information from the robot. First, make sure the robot is turned on and connected to the network.
 
+```
 conda deactivate
 
 $ roslaunch ur_calibration calibration_correction.launch
 robot_ip:=192.168.1.17
 target_filename:="${HOME}/my_robot_calibration.yaml”
+```
 
 Once you’ve done this, you should find a file named my_robot_calibration.yaml in your home directory. Just leave that there.
 
 Next, open another terminal, and input the following to set-up a connection with the robot:
 
+```
 $ roslaunch ur_robot_driver ur5e_bringup.launch robot_ip:=192.168.1.17 kinematics_config:=${HOME}/my_robot_calibration.yaml
+```
 
 If you’re getting an error, it is likely the driver was installed incorrectly or you have not properly set-up your root file. To alter your root file, use:
 
+```
 gedit ~/.bashrc
+```
 
 This is what my root file looks like:
 
@@ -92,7 +98,9 @@ I was able to connect the UR5e to my computer using the instructions followed in
 
 The UR External Control must be playing for the robot to be able to accept commands. You should be able to connect to the robot and see its position in rviz, but when you try to move the robot using the:
 
+```
 rosrun ur_robot_driver test_move
+```
 
 You’ll run into issues. If you are having issues with getting the external control to run, be sure that the external control has the Host IP setting as your own computer’s IP.
 
